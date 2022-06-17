@@ -5,6 +5,7 @@ import React from 'react'; import {
 const Header = React.lazy(() => import('./Header'));
 const Home = React.lazy(() => import('./Home'));
 const Create = React.lazy(() => import('./Create'));
+const Detail = React.lazy(() => import('./Detail'));
 
 interface IProps { }
 
@@ -19,6 +20,9 @@ const Main: React.FC<IProps> = (props) => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
+                <Route path="/product" >
+                    <Route path=":productId" element={<Detail />} />
+                </Route>
             </Routes>
         </>
 

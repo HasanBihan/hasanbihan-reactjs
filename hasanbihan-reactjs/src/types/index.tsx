@@ -14,7 +14,7 @@ export type typeProduct = {
 
 export type typeNewProduct = {
     name: string;
-    price: string;
+    price: number;
     category: string;
     description: string;
     avatar: string;

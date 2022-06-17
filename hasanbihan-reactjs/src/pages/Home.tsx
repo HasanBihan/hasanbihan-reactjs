@@ -81,7 +81,7 @@ const Home: React.FC<IProps> = (props) => {
                             {filteredProducts?.map((item: typeProduct, index) => {
                                 return (
                                     <div key={index}>
-                                        <ProductCard avatar={item.avatar} name={item.name} price={item.price} />
+                                        <ProductCard avatar={item.avatar} name={item.name} price={item.price} id={item.id} />
                                     </div>
                                 )
                             })}

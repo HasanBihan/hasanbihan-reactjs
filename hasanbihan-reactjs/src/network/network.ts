@@ -30,14 +30,23 @@ export async function getProducts() {
 
 }
 
-export async function getProduct(id: number) {
-    const response = await api.get(`/case-study/products/${id}`)
-    return response.data
+export async function getProduct(id: string) {
+    const response = await api.get<typeProduct[]>(`/case-study/products/${id}`)
+    if (response.status === 200) {
+        return response.data
+    }
+}
+
+export async function deleteProduct(id: string) {
+    const response = await api.delete(`/case-study/products/${id}`)
+    if (response.status === 200) {
+        return response.data
+    }
 }
 
 export async function postProduct(payload: object) {
-    const response = await api.post<typeNewProduct[]>(`/case-study/products/}`, payload)
-    return response.data
+    const response = await api.post<typeNewProduct[]>(`/case-study/products/`, payload)
+    return response
 }
 
 export async function getCategories() {
