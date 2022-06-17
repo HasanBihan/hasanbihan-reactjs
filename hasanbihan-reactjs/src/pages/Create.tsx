@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import CategoryDropdown from '../components/CategoryDropdown';
-import { typeNewProduct } from "../types";
+import { NewProduct } from "../types";
 import {
-    postProduct,
-    deleteProduct
+    postProduct
 } from "../network/network"
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
@@ -27,10 +26,6 @@ const Create: React.FC<IProps> = (props) => {
         }
     })
 
-    useEffect(() => {
-        console.log(selectedCategory);
-    }, [selectedCategory])
-
     const getSelectedCategory = (e: any) => {
         setSelectedCategory(e.name)
 
@@ -38,8 +33,6 @@ const Create: React.FC<IProps> = (props) => {
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        console.log(selectedCategory);
-        console.log(e);
 
         const target = e.target as typeof e.target & {
             name: { value: string };
@@ -60,7 +53,7 @@ const Create: React.FC<IProps> = (props) => {
                 title: 'Please fill all the inputs!'
             })
         } else {
-            const payload: typeNewProduct = {
+            const payload: NewProduct = {
                 name: name,
                 description: description,
                 avatar: imageurl,
@@ -68,6 +61,7 @@ const Create: React.FC<IProps> = (props) => {
                 developerEmail: developerEmail,
                 category: selectedCategory
             }
+
             try {
                 const response = await postProduct(payload)
                 if (response.status === 201 && response.statusText === "Created") {

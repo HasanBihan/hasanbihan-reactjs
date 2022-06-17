@@ -13,7 +13,7 @@ const Main: React.FC<IProps> = (props) => {
 
     return (
         <>
-            <div className="bg-indigo-600 shadow-lg">
+            <div className="bg-indigo-700 shadow-lg">
                 <Header />
             </div>
 

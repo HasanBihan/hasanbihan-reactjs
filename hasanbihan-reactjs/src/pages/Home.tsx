@@ -4,7 +4,7 @@ import {
 } from "../network/network"
 import ProductCard from "./../components/ProductCard"
 import CategoryDropdown from "./../components/CategoryDropdown"
-import { typeProduct } from "../types";
+import { Product } from "../types";
 import { Link } from "react-router-dom";
 import Spinner from "./../components/Spinner"
 
@@ -12,9 +12,9 @@ interface IProps { }
 
 const Home: React.FC<IProps> = (props) => {
     const [isLoaded, setIsLoaded] = useState(false)
-    const [products, setProducts] = useState<typeProduct[]>([])
-    const [filteredProducts, setFilteredProducts] = useState<typeProduct[]>([])
-    const [filteredByCategory, setFilteredByCategory] = useState<typeProduct[]>([])
+    const [products, setProducts] = useState<Product[]>([])
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+    const [filteredByCategory, setFilteredByCategory] = useState<Product[]>([])
     const [searchValue, setSearchValue] = useState<string>("")
 
     useEffect(() => {
@@ -25,7 +25,6 @@ const Home: React.FC<IProps> = (props) => {
 
         const response = await getProducts()
         if (Array.isArray(response)) {
-            console.log(response);
             setProducts(response)
             setFilteredProducts(response)
             setFilteredByCategory(response)
@@ -35,8 +34,7 @@ const Home: React.FC<IProps> = (props) => {
     }
 
     const filterProducts = (searchValue: string) => {
-        const filteredItems = filteredProducts.filter((item) => item?.name?.toLowerCase().includes(searchValue.toLowerCase()) || item?.description?.toLowerCase().includes(searchValue.toLowerCase()) || item?.category?.toLowerCase().includes(searchValue.toLowerCase()))
-        console.log(filteredItems);
+        const filteredItems = filteredByCategory.filter((item) => item?.name?.toLowerCase().includes(searchValue.toLowerCase()) || item?.description?.toLowerCase().includes(searchValue.toLowerCase()) || item?.category?.toLowerCase().includes(searchValue.toLowerCase()))
         if (searchValue === "") {
             setFilteredProducts(products)
         } else {
@@ -48,6 +46,7 @@ const Home: React.FC<IProps> = (props) => {
     const getSelectedCategory = (e: any) => {
         if (e.id === "0") {
             setFilteredProducts(products)
+            setSearchValue("")
         } else {
             const newItems = products.filter((product) => product?.category === e.name);
             setFilteredByCategory(newItems);
@@ -78,7 +77,7 @@ const Home: React.FC<IProps> = (props) => {
                         </div>
 
                         <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {filteredProducts?.map((item: typeProduct, index) => {
+                            {filteredProducts?.map((item: Product, index) => {
                                 return (
                                     <div key={index}>
                                         <ProductCard avatar={item.avatar} name={item.name} price={item.price} id={item.id} />

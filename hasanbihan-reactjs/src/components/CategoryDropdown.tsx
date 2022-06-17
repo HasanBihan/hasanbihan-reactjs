@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import { typeCategories, typeProduct } from "../types";
+import { Category} from "../types";
 import {
   getCategories
 } from "../network/network"
@@ -10,18 +10,18 @@ import {
 
 
 interface IProps {
-  getSelectedCategory(arg?: typeCategories): void;
+  getSelectedCategory(arg?: Category): void;
   create?: boolean
 }
 
 const CategoryDropdown: React.FC<IProps> = ({ getSelectedCategory, create }) => {
 
   const [selected, setSelected] = useState<any>({})
-  const [categories, setCategories] = useState<typeCategories[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
 
   useEffect(() => {
     loadData()
-  }, [])
+  },[])
 
   const loadData = async () => {
     let response = await getCategories()
@@ -36,7 +36,7 @@ const CategoryDropdown: React.FC<IProps> = ({ getSelectedCategory, create }) => 
     }
   }
 
-  const setCategory = (object: typeCategories) => {
+  const setCategory = (object: Category) => {
     getSelectedCategory(object)
     setSelected(object)
   }

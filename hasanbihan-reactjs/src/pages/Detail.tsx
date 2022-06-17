@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { typeProduct } from "../types";
+import { Product } from "../types";
 import {
     getProduct
 } from "../network/network"
@@ -10,13 +10,12 @@ interface IProps { }
 
 const Detail: React.FC<IProps> = (props) => {
     const params = useParams()
-    const [product, setProduct] = useState<typeProduct | any>(null);
+    const [product, setProduct] = useState<Product | any>(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         loadData()
-    }, [])
+    },[])
 
     const loadData = async () => {
         const productId: any = params.productId
@@ -26,7 +25,6 @@ const Detail: React.FC<IProps> = (props) => {
             setProduct(response)
             setIsLoaded(true)
         } else {
-            setIsError(true)
             setIsLoaded(true)
         }
 
@@ -43,8 +41,8 @@ const Detail: React.FC<IProps> = (props) => {
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
 
 
-                                <div className="flex h-full mt-4 lg:mt-0  lg:relative ">
-                                    <span className="title-font font-medium text-2xl text-gray-900 lg:absolute lg:left-2 lg:bottom-2 ">${product.price}</span>
+                                <div className="flex h-full lg:relative ">
+                                    <span className="title-font font-medium text-2xl  text-gray-900 lg:absolute lg:left-2  md:bottom-2 lg:bottom-10 xl:bottom-2 ">${product.price}</span>
 
                                 </div>
                             </div>
@@ -54,8 +52,8 @@ const Detail: React.FC<IProps> = (props) => {
                             <span className="flex-shrink mx-4 text-gray-800">Description</span>
                             <div className="flex-grow border-t border-gray-400"></div>
                         </div>
-                        <div className="mx-2 lg:mx-32 p-8">
-                            <p>{product.description}</p>
+                        <div className="lg:mx-32 p-8">
+                            <p className="text-justify">{product.description}</p>
                         </div>
                     </div>
                 </section>

@@ -1,9 +1,9 @@
-export type typeCategories = {
+export type Category = {
     id: string;
     name: string;
 };
 
-export type typeProduct = {
+export type Product = {
     id: number;
     name: string;
     avatar: string;
@@ -12,7 +12,7 @@ export type typeProduct = {
     category: string;
 };
 
-export type typeNewProduct = {
+export type NewProduct = {
     name: string;
     price: number;
     category: string;
