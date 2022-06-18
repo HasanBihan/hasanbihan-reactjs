@@ -15,7 +15,7 @@ const ProductCard: React.FC<IProps> = (props) => {
         <Link to={link}>
             <div className=" bg-white h-96 hover:bg-gray-300 rounded-lg border border-white-200 hover:border-gray-300 shadow-md cursor-pointer">
                 
-                    <img className="mt-2 rounded-t-lg w-48 h-48 object-scale-down m-auto" src={props.avatar} alt=""/>
+                    <img className="mt-2 rounded-t-lg w-48 h-48 object-scale-down m-auto" loading="lazy" src={props.avatar} alt=""/>
                 
                 <div className="relative p-5  h-48">
                     

@@ -34,7 +34,7 @@ const Home: React.FC<IProps> = (props) => {
     }
 
     const filterProducts = (searchValue: string) => {
-        const filteredItems = filteredByCategory.filter((item) => item?.name?.toLowerCase().includes(searchValue.toLowerCase()) || item?.description?.toLowerCase().includes(searchValue.toLowerCase()) || item?.category?.toLowerCase().includes(searchValue.toLowerCase()))
+        const filteredItems = filteredByCategory.filter((item) => item?.name?.toLowerCase().includes(searchValue.toLowerCase()) || item?.category?.toLowerCase().includes(searchValue.toLowerCase()))
         if (searchValue === "") {
             setFilteredProducts(products)
         } else {
